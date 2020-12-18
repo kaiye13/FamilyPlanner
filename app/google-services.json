@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "922045018599",
+    "project_id": "thefamilyplanner-bd929",
+    "storage_bucket": "thefamilyplanner-bd929.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922045018599:android:13b343bd82e2716e6f0d42",
+        "android_client_info": {
+          "package_name": "the.family.planner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922045018599-iai70d54tu6bvb672kregmq9us5pnngn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWfHTDWYfff33zQwfhOVUSKWsUOdoZq7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922045018599-iai70d54tu6bvb672kregmq9us5pnngn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

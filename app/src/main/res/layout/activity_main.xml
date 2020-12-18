@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/darkGray">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/gradient"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            >
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/FamilyPlanner"
+                android:textColor="@android:color/white"
+                android:textSize="40sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageButton
+        android:id="@+id/monthPlannerImageButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/menu_monthplanner"
+        android:cropToPadding="false"
+        android:elevation="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
+        android:scaleType="fitCenter"
+        android:tint="@android:color/background_light"
+        app:layout_constraintEnd_toStartOf="@+id/weekPlannerImageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:srcCompat="@drawable/ic_calender31" />
+
+    <TextView
+        android:id="@+id/monthPlannerLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:elevation="20dp"
+        android:text="@string/menu_monthplanner"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/monthPlannerImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/monthPlannerImageButton"
+        app:layout_constraintStart_toStartOf="@+id/monthPlannerImageButton" />
+
+    <ImageButton
+        android:id="@+id/weekPlannerImageButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/menu_weekplanner"
+        android:cropToPadding="false"
+        android:elevation="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
+        android:scaleType="fitCenter"
+        android:tint="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/monthPlannerImageButton"
+        app:srcCompat="@drawable/ic_calender7" />
+
+    <TextView
+        android:id="@+id/weekPlannerLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:elevation="20dp"
+        android:text="@string/menu_weekplanner"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weekPlannerImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/weekPlannerImageButton"
+        app:layout_constraintStart_toStartOf="@+id/weekPlannerImageButton" />
+
+    <ImageButton
+        android:id="@+id/dayPlannerImageButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/goToDay"
+        android:cropToPadding="false"
+        android:elevation="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
+        android:scaleType="fitCenter"
+        android:tint="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/monthPlannerImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/monthPlannerImageButton"
+        app:srcCompat="@drawable/ic_calender1" />
+
+    <TextView
+        android:id="@+id/dayPlannerLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:elevation="20dp"
+        android:text="@string/menu_dayplanner"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dayPlannerImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/dayPlannerImageButton"
+        app:layout_constraintStart_toStartOf="@+id/dayPlannerImageButton" />
+
+    <ImageButton
+        android:id="@+id/shoppingListImageButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/menu_shoppinglistplanner"
+        android:cropToPadding="false"
+        android:elevation="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
+        android:scaleType="fitCenter"
+        android:tint="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/weekPlannerImageButton"
+        app:layout_constraintTop_toTopOf="@+id/dayPlannerImageButton"
+        app:srcCompat="@drawable/ic_shopping_basket_white_18dp" />
+
+    <TextView
+        android:id="@+id/ShowCosplayNoteLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:elevation="20dp"
+        android:text="@string/menu_shoppinglistplanner"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shoppingListImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/shoppingListImageButton"
+        app:layout_constraintStart_toStartOf="@+id/shoppingListImageButton" />
+
+    <Button
+        android:id="@+id/familyBTN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/listboxgradient"
+        android:layout_marginTop="48dp"
+        android:text="@string/family"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/shoppingListImageButton"
+        app:layout_constraintStart_toStartOf="@+id/dayPlannerImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/dayPlannerImageButton" />
+
+    <Button
+        android:id="@+id/familyBTN2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/logout"
+        android:textColor="@android:color/white"
+        android:background="@drawable/listboxgradient"
+        app:layout_constraintEnd_toEndOf="@+id/shoppingListImageButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dayPlannerImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/familyBTN" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

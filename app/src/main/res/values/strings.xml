@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">TheFamilyPlanner</string>
+
+    <string name="minimum_password">you\'re password should be atleast 6 chars long</string>
+    <string name="auth_failed">failed to sign in</string>
+    <string name="FamilyPlanner">FamilyPlanner</string>
+    <string name="signIn">Sign in</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="login">Login</string>
+    <string name="forgotPass">Forgint Password ?</string>
+    <string name="Register">Register</string>
+    <string name="fullName">Full name</string>
+    <string name="conemail">confilm Email</string>
+    <string name="conpass">confirm Password</string>
+    <string name="ResetPassword">reset Password</string>
+    <string name="menu_monthplanner">Month Planner</string>
+    <string name="menu_weekplanner">Week Planner</string>
+    <string name="goToDay">Day Planner</string>
+    <string name="menu_dayplanner">Day Planner</string>
+    <string name="menu_shoppinglistplanner">Shopping List</string>
+    <string name="family">Family</string>
+    <string name="logout">Log Out</string>
+    <string name="selectADate">Select A Date</string>
+    <string name="addTask">Add Task</string>
+    <string name="deleteTask">Delete Task</string>
+    <string name="DeleteAllTask">Delete All Tasks</string>
+    <string name="goToWeek">Go To Week</string>
+    <string name="taskTitle">Task Title</string>
+    <string name="taskDescription">Task Description</string>
+    <string name="date">Date</string>
+    <string name="startTime">Start Time</string>
+    <string name="time">12:00</string>
+    <string name="endTime">End Time</string>
+</resources>
