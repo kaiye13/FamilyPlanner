@@ -1,26 +1,44 @@
 package the.family.planner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import the.family.planner.adapters.TaskListAdapter;
+import the.family.planner.models.Task;
 
 public class DayViewActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
+    private ChildEventListener mChildEventListener;
     private EditText dayEditText;
     private Button addTaskButton;
     private ListView taskListView;
@@ -28,6 +46,11 @@ public class DayViewActivity extends AppCompatActivity {
     private int year;
     private int month;
     private int day;
+    private FirebaseListOptions<Task> options;
+    FirebaseListAdapter adapter;
+    //ArrayList<Task> tasks;
+    //TaskListAdapter adapter;
+    //Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +61,73 @@ public class DayViewActivity extends AppCompatActivity {
         addDatabase();
         initializeItems();
         setListeners();
+        setList();
 
     }
+
+    private void setList() {
+        Query query = mDatabaseReference;
+        options = new FirebaseListOptions.Builder<Task>()
+                .setLayout(R.layout.adapter_view_layout)
+                .setLifecycleOwner(DayViewActivity.this)
+                .setQuery(query,Task.class)
+                .build();
+        adapter = new FirebaseListAdapter(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
+                TextView startTime = v.findViewById(R.id.startTimeLabel);
+                TextView endTime = v.findViewById(R.id.endTimeLabel);
+                TextView title = v.findViewById(R.id.titleLabel);
+
+                Task task = (Task) model;
+                //set views
+                startTime.setText(task.getStart_time());
+                endTime.setText(task.getEnd_time());
+                title.setText(task.getTitle());
+
+            }
+        };
+
+        taskListView.setAdapter(adapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    /*
+        tasks = new ArrayList<>();
+        task = new Task();
+        adapter = new TaskListAdapter(this, R.layout.adapter_view_layout,R.id.startTimeLabel, tasks);
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    task = ds.getValue(Task.class);
+
+
+
+                }
+                taskListView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+*/
+
 
     private void initializeItems() {
         dayEditText = (EditText) findViewById(R.id.dayEditText);
@@ -52,6 +140,7 @@ public class DayViewActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+
     }
 
     private void setListeners() {
@@ -75,7 +164,8 @@ public class DayViewActivity extends AppCompatActivity {
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference("tasks");
+        mDatabaseReference = mFireBaseDatabase.getReference(getString(R.string.dbnode_tasks));
+
     }
 
     private void addToolbar() {

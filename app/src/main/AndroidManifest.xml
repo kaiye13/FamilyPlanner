@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddTaskActivity"  android:parentActivityName=".DayViewActivity" ></activity>
+        <activity android:name=".AddTaskActivity"  android:parentActivityName=".DayViewActivity" android:windowSoftInputMode="stateHidden" ></activity>
         <activity android:name=".ShoppingActivity"  android:parentActivityName=".MainActivity"/>
         <activity android:name=".MonthViewActivity"  android:parentActivityName=".MainActivity" />
         <activity android:name=".WeekViewActivity"  android:parentActivityName=".MainActivity" />
