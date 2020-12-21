@@ -38,6 +38,7 @@ public class DayViewActivity extends AppCompatActivity {
     private int day;
     private FirebaseListOptions<Task> options;
     FirebaseListAdapter adapter;
+    String date;
     //ArrayList<Task> tasks;
     //TaskListAdapter adapter;
     //Task task;
@@ -56,7 +57,7 @@ public class DayViewActivity extends AppCompatActivity {
     }
 
     private void setList() {
-        Query query = mDatabaseReference;
+        Query query = mDatabaseReference.orderByChild("date").equalTo(date);
         options = new FirebaseListOptions.Builder<Task>()
                 .setLayout(R.layout.adapter_view_layout)
                 .setLifecycleOwner(DayViewActivity.this)
@@ -94,31 +95,6 @@ public class DayViewActivity extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    /*
-        tasks = new ArrayList<>();
-        task = new Task();
-        adapter = new TaskListAdapter(this, R.layout.adapter_view_layout,R.id.startTimeLabel, tasks);
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds: snapshot.getChildren()){
-                    task = ds.getValue(Task.class);
-
-
-
-                }
-                taskListView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-*/
-
-
     private void initializeItems() {
         dayEditText = (EditText) findViewById(R.id.dayEditText);
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
@@ -141,8 +117,9 @@ public class DayViewActivity extends AppCompatActivity {
     private void onClickDay() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(DayViewActivity.this, (view, year, month, dayOfMonth) -> {
             month = month + 1;
-            String date = dayOfMonth + "/" + month + "/" + year;
+            date = dayOfMonth + "/" + month + "/" + year;
             dayEditText.setText(date);
+            setList();
         }, year, month, day);
         datePickerDialog.show();
     }
@@ -154,7 +131,7 @@ public class DayViewActivity extends AppCompatActivity {
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference(getString(R.string.dbnode_tasks));
+        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_tasks));
 
     }
 
