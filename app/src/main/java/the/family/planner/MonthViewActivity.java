@@ -9,17 +9,23 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import the.family.planner.models.Task;
 
 public class MonthViewActivity extends AppCompatActivity {
 
@@ -30,6 +36,13 @@ public class MonthViewActivity extends AppCompatActivity {
     private ImageButton addTask, deleteTask, deleteAll, goToDay, goToWeek;
     private CalendarView calendarview;
     private TextView title;
+    private FirebaseListOptions<Task> options;
+    FirebaseListAdapter adapter;
+    String date;
+    private int year;
+    private int month;
+    private int day;
+
 
 
 
@@ -42,6 +55,47 @@ public class MonthViewActivity extends AppCompatActivity {
         addDatabase();
         initializeItems();
         setListeners();
+        setList();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    private void setList() {
+        Query query = mDatabaseReference.orderByChild("date").equalTo(date);
+        options = new FirebaseListOptions.Builder<Task>()
+                .setLayout(R.layout.adapter_view_layout_month)
+                .setLifecycleOwner(MonthViewActivity.this)
+                .setQuery(query,Task.class)
+                .build();
+        adapter = new FirebaseListAdapter(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
+                TextView startTime = v.findViewById(R.id.startTimeLabel);
+                TextView endTime = v.findViewById(R.id.endTimeLabel);
+                TextView title = v.findViewById(R.id.titleLabel);
+
+                Task task = (Task) model;
+                //set views
+                startTime.setText(task.getStart_time());
+                endTime.setText(task.getEnd_time());
+                title.setText(task.getTitle());
+
+            }
+        };
+
+        taskListView.setAdapter(adapter);
+
+        taskListView.setAdapter(adapter);
 
     }
 
@@ -51,9 +105,11 @@ public class MonthViewActivity extends AppCompatActivity {
         deleteTask.setOnClickListener(v-> onClickDeleteTask());
         goToWeek.setOnClickListener(v-> onClickGoWeek());
         goToDay.setOnClickListener(v-> onClickGoDay());
+
         calendarview.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            String date = dayOfMonth + "/" + (month+1) + "/" + year;
+            date = dayOfMonth + "/" + (month+1) + "/" + year;
             dateText.setText(date);
+            setList();
         });
     }
 
@@ -91,11 +147,20 @@ public class MonthViewActivity extends AppCompatActivity {
         calendarview = findViewById(R.id.calendarView);
         title = findViewById(R.id.toolbarTitle);
         title.setText("Month Planner");
+
+
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        date= day+"/"+(month+1)+"/"+year;
+
+
     }
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference("tasks");
+        mDatabaseReference = mFireBaseDatabase.getReference().child("tasks");
     }
 
     private void addToolbar() {
