@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         addToolbar();
         addDatabase();
         initializeItems();

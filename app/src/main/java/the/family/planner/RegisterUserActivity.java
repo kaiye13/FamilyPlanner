@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,9 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import the.family.planner.models.User;
 
 
 public class RegisterUserActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +31,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
     private FirebaseAuth mAuth;
     private EditText fullNameEditText,  emailEditText, conEmailEditText, passwordEditText, conPasswordEditText;
     private Button registerButton;
+
     private String email, conEmail, password, conPassword, fullName;
     private ProgressBar progressBar;
 
@@ -97,7 +104,6 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
                 //check if passwords match
                 if(doStringsMatch(password,conPassword)){
                     registerNewEmail(email, password);
-                    Toast.makeText(RegisterUserActivity.this, "user is Registered", Toast.LENGTH_LONG).show();
 
                 }else {
                     Toast.makeText(RegisterUserActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
@@ -122,8 +128,35 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
                         if(task.isSuccessful()){
                             Log.d(TAG,"oncomplete: AuthState: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                            FirebaseAuth.getInstance().signOut();
-                        }else {
+                            User user = new User();
+                            user.setName(fullName);
+                            user.setFamily_id("");
+                            user.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child(getString(R.string.dbnode_users))
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            FirebaseAuth.getInstance().signOut();
+
+                                            //redirect the user to the login screen
+                                            redirectLoginScreen();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RegisterUserActivity.this, "something went wrong.", Toast.LENGTH_SHORT).show();
+                                    FirebaseAuth.getInstance().signOut();
+
+                                    //redirect the user to the login screen
+                                    redirectLoginScreen();
+                                }
+                            });
+
+                        }
+                        if (!task.isSuccessful()) {
                             Toast.makeText(RegisterUserActivity.this, "Unable to Register", Toast.LENGTH_LONG).show();
                         }
                         hideDialog();
@@ -134,6 +167,14 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
 
     private void showDialog(){
         progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void redirectLoginScreen(){
+        Log.d(TAG, "redirectLoginScreen: redirecting to login screen.");
+
+        Intent intent = new Intent(RegisterUserActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void hideDialog(){
