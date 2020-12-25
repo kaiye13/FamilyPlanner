@@ -34,10 +34,12 @@ public class AddTaskActivity extends AppCompatActivity  {
     private EditText titleET,  startTimeET, endTimeET;
     private Button addTask;
     private TextInputLayout descriptionET;
-    private TextView title;
+    private TextView title, dateTV;
+
     private User user;
     private FirebaseUser firebaseAuth;
     TimePickerDialog timePickerDialog;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class AddTaskActivity extends AppCompatActivity  {
         addDatabase();
         initializeItems();
         setListeners();
+
+        String date = getIntent().getStringExtra("date");
     }
 
     private void initializeItems() {
@@ -56,7 +60,10 @@ public class AddTaskActivity extends AppCompatActivity  {
         startTimeET = findViewById(R.id.editTextStartTime);
         endTimeET = findViewById(R.id.editTextEndTime);
         addTask = findViewById(R.id.addTaskBtn);
+        dateTV = findViewById(R.id.dateTextView);
         title.setText("Add A Task");
+        date = getIntent().getStringExtra("date");
+        dateTV.setText(date);
     }
 
     private void setListeners() {
@@ -88,7 +95,7 @@ public class AddTaskActivity extends AppCompatActivity  {
         task.setStart_time(startTimeET.getText().toString().trim());
         task.setEnd_time(endTimeET.getText().toString().trim());
         task.setDescription(descriptionET.getEditText().getText().toString().trim());
-        task.setDate("18/12/2020");
+        task.setDate(date);
         task.setUser_id(firebaseAuth.getUid());
         mDatabaseReference.push().setValue(task);
 

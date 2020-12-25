@@ -9,11 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddTaskActivity"  android:parentActivityName=".DayViewActivity" android:windowSoftInputMode="stateHidden" ></activity>
-        <activity android:name=".ShoppingActivity"  android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MonthViewActivity"  android:parentActivityName=".MainActivity" />
-        <activity android:name=".WeekViewActivity"  android:parentActivityName=".MainActivity" />
-        <activity android:name=".DayViewActivity"  android:parentActivityName=".MainActivity" />
+        <activity android:name=".EditTask"></activity>
+        <activity android:name=".ShowTask" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:parentActivityName=".DayViewActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ShoppingActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MonthViewActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".WeekViewActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DayViewActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".RegisterUserActivity"

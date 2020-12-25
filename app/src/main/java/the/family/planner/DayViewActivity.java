@@ -106,7 +106,12 @@ public class DayViewActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-
+        if ((getIntent().getStringExtra("dateToDay")) != null){
+            date = getIntent().getStringExtra("dateToDay");
+        }else {
+            date= day+"/"+(month+1)+"/"+year;
+        }
+        dayEditText.setText(date);
     }
 
     private void setListeners() {
@@ -126,6 +131,7 @@ public class DayViewActivity extends AppCompatActivity {
 
     private void onClickAddTask() {
         Intent intent = new Intent(this, AddTaskActivity.class);
+        intent.putExtra("date", date);
         startActivity(intent);
     }
 

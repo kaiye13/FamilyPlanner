@@ -115,6 +115,7 @@ public class MonthViewActivity extends AppCompatActivity {
 
     private void onClickAddTask() {
         Intent intent = new Intent(this, AddTaskActivity.class);
+        intent.putExtra("date", date);
         startActivity(intent);
     }
 
@@ -133,6 +134,7 @@ public class MonthViewActivity extends AppCompatActivity {
 
     private void onClickGoDay() {
         Intent intent = new Intent(this, DayViewActivity.class);
+        intent.putExtra("dateToDay", date);
         startActivity(intent);
     }
 
@@ -154,6 +156,7 @@ public class MonthViewActivity extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         date= day+"/"+(month+1)+"/"+year;
+        dateText.setText(date);
 
 
     }
