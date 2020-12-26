@@ -32,6 +32,7 @@ public class ShowTask extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
     private TextView taskTitle, start, end, description;
+    Task t;
 
 
     @Override
@@ -53,21 +54,18 @@ public class ShowTask extends AppCompatActivity {
         start = findViewById(R.id.taskStartTimeTV);
         end = findViewById(R.id.taskEndTimeTV);
         description = findViewById(R.id.taskDescriptionTV);
-        taskTitle.setText(String.format("%slol", data));
 
     }
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_tasks));
-
-        /*Query query = mDatabaseReference.orderByKey().equalTo(data);
-
+        Query query = mDatabaseReference.orderByKey().equalTo(data);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot singleSnapshot : snapshot.getChildren()){
-                    Task t = singleSnapshot.getValue(Task.class);
+                    t = singleSnapshot.getValue(Task.class);
                     taskTitle.setText(t.getTitle());
                     description.setText(t.getDescription());
                     start.setText(t.getStart_time());
@@ -80,7 +78,7 @@ public class ShowTask extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
 
     }
 
@@ -103,12 +101,10 @@ public class ShowTask extends AppCompatActivity {
         switch( item.getItemId()){
             case R.id.editTask:
                 Intent intent = new Intent(this, EditTask.class);
+                intent.putExtra("taskidEdit",t.getTask_id() );
                 this.startActivity(intent);
                 return true;
             case R.id.deleteTask:
-                return true;
-            case android.R.id.home:
-                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

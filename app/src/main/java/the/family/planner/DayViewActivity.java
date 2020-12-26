@@ -18,9 +18,12 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,7 +67,7 @@ public class DayViewActivity extends AppCompatActivity {
         options = new FirebaseListOptions.Builder<Task>()
                 .setLayout(R.layout.adapter_view_layout)
                 .setLifecycleOwner(DayViewActivity.this)
-                .setQuery(query,Task.class)
+                .setQuery(query, Task.class)
                 .build();
         adapter = new FirebaseListAdapter<Task>(options) {
             @Override
@@ -72,24 +75,11 @@ public class DayViewActivity extends AppCompatActivity {
                 TextView startTime = v.findViewById(R.id.startTimeLabel);
                 TextView endTime = v.findViewById(R.id.endTimeLabel);
                 TextView title = v.findViewById(R.id.titleLabel);
-
                 startTime.setText(task.getStart_time());
                 endTime.setText(task.getEnd_time());
                 title.setText(task.getTitle());
 
             }
-
-            /*@Override
-            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
-                );
-
-                Task task = (Task) model;
-
-                tasks.add(task);
-                //set views
-
-
-            }*/
         };
 
         taskListView.setAdapter(adapter);
@@ -119,38 +109,26 @@ public class DayViewActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        if ((getIntent().getStringExtra("dateToDay")) != null){
+        if ((getIntent().getStringExtra("dateToDay")) != null) {
             date = getIntent().getStringExtra("dateToDay");
-        }else {
-            date= day+"/"+(month+1)+"/"+year;
+        } else {
+            date = day + "/" + (month + 1) + "/" + year;
         }
         dayEditText.setText(date);
     }
 
     private void setListeners() {
-        addTaskButton.setOnClickListener(v-> onClickAddTask());
-        dayEditText.setOnClickListener(v-> onClickDay());
+        addTaskButton.setOnClickListener(v -> onClickAddTask());
+        dayEditText.setOnClickListener(v -> onClickDay());
         taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Task task = tasks.get(position);
-/*                Intent intent = new Intent(DayViewActivity.this, ShowTask.class);
-                intent.putExtra("task_id", task.getTask_id());*/
-                Toast.makeText(DayViewActivity.this, task.toString(), Toast.LENGTH_LONG).show();
-               /* startActivity(intent);*/
-
-            }
-        });
-
-        /*taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(DayViewActivity.this,ShowTask.class);
                 Task task = (Task) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(DayViewActivity.this,ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     private void onClickDay() {

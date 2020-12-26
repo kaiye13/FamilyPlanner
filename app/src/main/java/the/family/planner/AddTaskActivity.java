@@ -97,7 +97,13 @@ public class AddTaskActivity extends AppCompatActivity  {
         task.setDescription(descriptionET.getEditText().getText().toString().trim());
         task.setDate(date);
         task.setUser_id(firebaseAuth.getUid());
-        mDatabaseReference.push().setValue(task);
+        String id = mDatabaseReference.push().getKey();
+        task.setTask_id(id);
+        mDatabaseReference.child(id).setValue(task);
+
+        Intent intent = new Intent(AddTaskActivity.this, DayViewActivity.class);
+        intent.putExtra("dateToDay", date);
+        startActivity(intent);
 
     }
 

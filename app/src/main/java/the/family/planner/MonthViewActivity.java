@@ -34,7 +34,7 @@ public class MonthViewActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private TextView dateText;
     private ListView taskListView;
-    private ImageButton addTask, deleteTask, deleteAll, goToDay, goToWeek;
+    private ImageButton addTask, deleteAll, goToDay, goToWeek;
     private CalendarView calendarview;
     private TextView title;
     private FirebaseListOptions<Task> options;
@@ -103,7 +103,6 @@ public class MonthViewActivity extends AppCompatActivity {
     private void setListeners() {
         addTask.setOnClickListener(v-> onClickAddTask());
         deleteAll.setOnClickListener(v-> onClickDeleteAllTask());
-        deleteTask.setOnClickListener(v-> onClickDeleteTask());
         goToWeek.setOnClickListener(v-> onClickGoWeek());
         goToDay.setOnClickListener(v-> onClickGoDay());
 
@@ -116,8 +115,8 @@ public class MonthViewActivity extends AppCompatActivity {
         taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MonthViewActivity.this,ShowTask.class);
                 Task task = (Task) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(MonthViewActivity.this,ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
                 startActivity(intent);
             }
@@ -135,9 +134,6 @@ public class MonthViewActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void onClickDeleteTask() {
-
-    }
 
     private void onClickDeleteAllTask() {
 
@@ -153,7 +149,6 @@ public class MonthViewActivity extends AppCompatActivity {
         dateText = findViewById(R.id.text_month);
         taskListView = findViewById(R.id.taskListView);
         addTask = findViewById(R.id.addTaskImagButton);
-        deleteTask = findViewById(R.id.DeleteTaskImageButton);
         deleteAll = findViewById(R.id.deleteAllTaskImageButton);
         goToDay = findViewById(R.id.imageButton4);
         goToWeek = findViewById(R.id.imageButton5);

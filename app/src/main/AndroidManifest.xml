@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditTask"></activity>
-        <activity android:name=".ShowTask" />
+        <activity android:name=".EditTask" android:parentActivityName=".ShowTask" android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".ShowTask" android:parentActivityName=".DayViewActivity" />
         <activity
             android:name=".AddTaskActivity"
             android:parentActivityName=".DayViewActivity"
