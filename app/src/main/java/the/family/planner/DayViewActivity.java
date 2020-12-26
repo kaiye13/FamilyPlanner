@@ -8,10 +8,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -20,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import the.family.planner.models.Task;
@@ -39,7 +42,7 @@ public class DayViewActivity extends AppCompatActivity {
     private FirebaseListOptions<Task> options;
     FirebaseListAdapter adapter;
     String date;
-    //ArrayList<Task> tasks;
+    ArrayList<Task> tasks;
     //TaskListAdapter adapter;
     //Task task;
 
@@ -63,20 +66,30 @@ public class DayViewActivity extends AppCompatActivity {
                 .setLifecycleOwner(DayViewActivity.this)
                 .setQuery(query,Task.class)
                 .build();
-        adapter = new FirebaseListAdapter(options) {
+        adapter = new FirebaseListAdapter<Task>(options) {
             @Override
-            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
+            protected void populateView(@NonNull View v, @NonNull Task task, int position) {
                 TextView startTime = v.findViewById(R.id.startTimeLabel);
                 TextView endTime = v.findViewById(R.id.endTimeLabel);
                 TextView title = v.findViewById(R.id.titleLabel);
 
-                Task task = (Task) model;
-                //set views
                 startTime.setText(task.getStart_time());
                 endTime.setText(task.getEnd_time());
                 title.setText(task.getTitle());
 
             }
+
+            /*@Override
+            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
+                );
+
+                Task task = (Task) model;
+
+                tasks.add(task);
+                //set views
+
+
+            }*/
         };
 
         taskListView.setAdapter(adapter);
@@ -100,7 +113,7 @@ public class DayViewActivity extends AppCompatActivity {
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
         taskListView = (ListView) findViewById(R.id.ShoppingList);
         title = findViewById(R.id.toolbarTitle);
-
+        tasks = new ArrayList<Task>();
         title.setText("Day Planner");
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -117,6 +130,27 @@ public class DayViewActivity extends AppCompatActivity {
     private void setListeners() {
         addTaskButton.setOnClickListener(v-> onClickAddTask());
         dayEditText.setOnClickListener(v-> onClickDay());
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Task task = tasks.get(position);
+/*                Intent intent = new Intent(DayViewActivity.this, ShowTask.class);
+                intent.putExtra("task_id", task.getTask_id());*/
+                Toast.makeText(DayViewActivity.this, task.toString(), Toast.LENGTH_LONG).show();
+               /* startActivity(intent);*/
+
+            }
+        });
+
+        /*taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(DayViewActivity.this,ShowTask.class);
+                Task task = (Task) parent.getAdapter().getItem(position);
+                intent.putExtra("task_id", task.getTask_id());
+                startActivity(intent);
+            }
+        });*/
     }
 
     private void onClickDay() {

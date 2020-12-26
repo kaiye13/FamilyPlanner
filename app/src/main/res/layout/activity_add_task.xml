@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTaskActivity"
-    android:background="@color/darkGray">
+    android:background="@color/darkGray"
+    tools:context=".AddTaskActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -18,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/gradient"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
                 android:id="@+id/toolbarTitle"
@@ -144,11 +144,11 @@
             android:layout_height="27dp"
             android:layout_marginTop="8dp"
             android:autofillHints="@string/time"
-            android:inputType="time"
             android:ems="10"
+            android:focusableInTouchMode="false"
+            android:inputType="time"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
-            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="@+id/taskTitleEditText"
             app:layout_constraintStart_toStartOf="@+id/startTimeLabel"
             app:layout_constraintTop_toBottomOf="@+id/startTimeLabel"
@@ -174,8 +174,8 @@
             android:autofillHints="@string/time"
             android:ems="10"
             android:focusableInTouchMode="false"
-            android:textColor="@color/colorPrimary"
             android:inputType="time"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/taskTitleEditText"
             app:layout_constraintStart_toStartOf="@+id/endTimeLable"

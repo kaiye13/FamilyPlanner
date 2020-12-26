@@ -73,8 +73,7 @@
             android:text="@string/addTask"
             android:textColor="@android:color/white" />
 
-        <ListView
-            android:id="@+id/ShoppingList"
+<ListView            android:id="@+id/ShoppingList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

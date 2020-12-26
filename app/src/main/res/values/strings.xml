@@ -35,4 +35,8 @@
     <string name="dbnode_users">users</string>
     <string name="dbnode_tasks">tasks</string>
     <string name="field_user_id">user_id</string>
+    <string name="UpdateTask">Update Task</string>
+    <string name="to"><![CDATA[->]]></string>
+    <string name="Edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

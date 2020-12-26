@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -110,6 +111,16 @@ public class MonthViewActivity extends AppCompatActivity {
             date = dayOfMonth + "/" + (month+1) + "/" + year;
             dateText.setText(date);
             setList();
+        });
+
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MonthViewActivity.this,ShowTask.class);
+                Task task = (Task) parent.getAdapter().getItem(position);
+                intent.putExtra("task_id", task.getTask_id());
+                startActivity(intent);
+            }
         });
     }
 
