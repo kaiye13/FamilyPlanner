@@ -2,6 +2,7 @@ package the.family.planner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -27,6 +28,7 @@ import the.family.planner.models.Task;
 public class ShowTask extends AppCompatActivity {
 
     private String data;
+    private String date;
     ArrayList<Task> tasks;
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -70,6 +72,7 @@ public class ShowTask extends AppCompatActivity {
                     description.setText(t.getDescription());
                     start.setText(t.getStart_time());
                     end.setText(t.getEnd_time());
+                    date = t.getDate();
                 }
 
             }
@@ -105,6 +108,20 @@ public class ShowTask extends AppCompatActivity {
                 this.startActivity(intent);
                 return true;
             case R.id.deleteTask:
+                AlertDialog alertDialog = new AlertDialog.Builder(ShowTask.this).create();
+                alertDialog.setTitle("Oh No");
+                alertDialog.setMessage("Are you sure you want to delete your " + t.getTitle() + " task?");
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", (dialog, which) -> { });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", (dialog, which) -> {
+                    mDatabaseReference.child(t.getTask_id()).removeValue();
+                    Intent deleted = new Intent(this, DayViewActivity.class);
+                    deleted.putExtra("dateToDay",date);
+                    this.startActivity(deleted);
+                });
+                alertDialog.show();
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
