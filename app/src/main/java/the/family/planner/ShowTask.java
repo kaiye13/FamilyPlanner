@@ -1,7 +1,6 @@
 package the.family.planner;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +26,7 @@ import the.family.planner.models.Task;
 
 public class ShowTask extends AppCompatActivity {
 
-    private String data;
+    private String dataTaskId, dataTaskDate;
     private String date;
     ArrayList<Task> tasks;
     private FirebaseDatabase mFireBaseDatabase;
@@ -44,7 +43,8 @@ public class ShowTask extends AppCompatActivity {
 
 
 
-        data = getIntent().getStringExtra("task_id");
+        dataTaskId = getIntent().getStringExtra("task_id");
+        dataTaskDate = getIntent().getStringExtra("date");
         addDatabase();
         addToolbar();
         initializeItems();
@@ -61,8 +61,8 @@ public class ShowTask extends AppCompatActivity {
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_tasks));
-        Query query = mDatabaseReference.orderByKey().equalTo(data);
+        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_dates)).child(dataTaskDate).child(getString(R.string.dbnode_tasks));
+        Query query = mDatabaseReference.orderByKey().equalTo(dataTaskId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,7 +72,7 @@ public class ShowTask extends AppCompatActivity {
                     description.setText(t.getDescription());
                     start.setText(t.getStart_time());
                     end.setText(t.getEnd_time());
-                    date = t.getDate();
+                    date = dataTaskDate;
                 }
 
             }
@@ -105,6 +105,7 @@ public class ShowTask extends AppCompatActivity {
             case R.id.editTask:
                 Intent intent = new Intent(this, EditTask.class);
                 intent.putExtra("taskidEdit",t.getTask_id() );
+                intent.putExtra("taskdateEdit",t.getDate() );
                 this.startActivity(intent);
                 return true;
             case R.id.deleteTask:

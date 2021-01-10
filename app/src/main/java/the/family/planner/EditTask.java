@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import the.family.planner.models.Task;
 
 public class EditTask extends AppCompatActivity {
-    private String data;
+    private String dataId, dataDate;
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
     private EditText taskTitle, start, end;
@@ -42,8 +42,8 @@ public class EditTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-        data = getIntent().getStringExtra("taskidEdit");
-
+        dataId = getIntent().getStringExtra("taskidEdit");
+        dataDate = getIntent().getStringExtra("taskdateEdit");
         addDatabase();
         addToolbar();
         initializeItems();
@@ -71,10 +71,14 @@ public class EditTask extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(EditTask.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timetext.setText(hourOfDay + ":" + minute);
+
+                timetext.setText(String.format("%02d:%02d", hourOfDay, minute));
+
+
             }
-        }, 0, 0, DateFormat.is24HourFormat(this));
+        }, 0, 0,true  );
         timePickerDialog.show();
+
     }
 
     private void onClickEditTask() {
@@ -83,10 +87,11 @@ public class EditTask extends AppCompatActivity {
         String endTime = end.getText().toString();
         String descriptionTask = description.getEditText().getText().toString();
 
-        updateTask(data, title, startTime, endTime, descriptionTask);
+        updateTask(dataId, title, startTime, endTime, descriptionTask);
 
         Intent intent = new Intent(EditTask.this, ShowTask.class);
-        intent.putExtra("task_id", data);
+        intent.putExtra("task_id", dataId);
+        intent.putExtra("date", dataDate);
         startActivity(intent);
     }
 
@@ -115,7 +120,7 @@ public class EditTask extends AppCompatActivity {
         date = findViewById(R.id.dateTextView);
         editTask = findViewById(R.id.editTaskBtn);
 
-        Query query = mDatabaseReference.orderByKey().equalTo(data);
+        Query query = mDatabaseReference.orderByKey().equalTo(dataId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,7 +143,7 @@ public class EditTask extends AppCompatActivity {
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference= mFireBaseDatabase.getReference().child(getString(R.string.dbnode_tasks));
+        mDatabaseReference= mFireBaseDatabase.getReference().child(getString(R.string.dbnode_dates)).child(dataDate).child(getString(R.string.dbnode_tasks));
 
     }
 

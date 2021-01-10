@@ -4,15 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import the.family.planner.models.Task;
 
@@ -72,7 +67,7 @@ public class MonthViewActivity extends AppCompatActivity {
     }
 
     private void setList() {
-        Query query = mDatabaseReference.orderByChild("date").equalTo(date);
+        Query query = mDatabaseReference.child(date).child("tasks").orderByChild("start_time");
         options = new FirebaseListOptions.Builder<Task>()
                 .setLayout(R.layout.adapter_view_layout_month)
                 .setLifecycleOwner(MonthViewActivity.this)
@@ -107,7 +102,7 @@ public class MonthViewActivity extends AppCompatActivity {
         goToDay.setOnClickListener(v-> onClickGoDay());
 
         calendarview.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            date = dayOfMonth + "/" + (month+1) + "/" + year;
+            date = dayOfMonth + "-" + (month+1) + "-" + year;
             dateText.setText(date);
             setList();
         });
@@ -124,7 +119,7 @@ public class MonthViewActivity extends AppCompatActivity {
     }
 
     private void onClickAddTask() {
-        Intent intent = new Intent(this, AddTaskActivity.class);
+        Intent intent = new Intent(this, AddTaskMonthActivity.class);
         intent.putExtra("date", date);
         startActivity(intent);
     }
@@ -161,7 +156,11 @@ public class MonthViewActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        date= day+"/"+(month+1)+"/"+year;
+        if ((getIntent().getStringExtra("dateToMonth")) != null) {
+            date = getIntent().getStringExtra("dateToMonth");
+        } else {
+            date = day + "-" + (month + 1) + "-" + year;
+        }
         dateText.setText(date);
 
 
@@ -169,7 +168,7 @@ public class MonthViewActivity extends AppCompatActivity {
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference().child("tasks");
+        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_dates));
     }
 
     private void addToolbar() {

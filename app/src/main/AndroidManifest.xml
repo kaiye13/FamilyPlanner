@@ -12,8 +12,12 @@
         <activity android:name=".EditTask" android:parentActivityName=".ShowTask" android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".ShowTask" android:parentActivityName=".DayViewActivity" />
         <activity
-            android:name=".AddTaskActivity"
+            android:name=".AddTaskDayActivity"
             android:parentActivityName=".DayViewActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AddTaskMonthActivity"
+            android:parentActivityName=".MonthViewActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ShoppingActivity"

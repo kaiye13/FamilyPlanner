@@ -13,17 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,7 +59,7 @@ public class DayViewActivity extends AppCompatActivity {
     }
 
     private void setList() {
-        Query query = mDatabaseReference.orderByChild("date").equalTo(date);
+        Query query = mDatabaseReference.child(date).child("tasks").orderByChild("start_time");
         options = new FirebaseListOptions.Builder<Task>()
                 .setLayout(R.layout.adapter_view_layout)
                 .setLifecycleOwner(DayViewActivity.this)
@@ -109,10 +105,11 @@ public class DayViewActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+
         if ((getIntent().getStringExtra("dateToDay")) != null) {
             date = getIntent().getStringExtra("dateToDay");
         } else {
-            date = day + "/" + (month + 1) + "/" + year;
+            date = day + "-" + (month + 1) + "-" + year;
         }
         dayEditText.setText(date);
     }
@@ -126,6 +123,7 @@ public class DayViewActivity extends AppCompatActivity {
                 Task task = (Task) parent.getAdapter().getItem(position);
                 Intent intent = new Intent(DayViewActivity.this,ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
+                intent.putExtra("date",task.getDate());
                 startActivity(intent);
             }
         });
@@ -134,7 +132,7 @@ public class DayViewActivity extends AppCompatActivity {
     private void onClickDay() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(DayViewActivity.this, (view, year, month, dayOfMonth) -> {
             month = month + 1;
-            date = dayOfMonth + "/" + month + "/" + year;
+            date = dayOfMonth + "-" + month + "-" + year;
             dayEditText.setText(date);
             setList();
         }, year, month, day);
@@ -142,14 +140,14 @@ public class DayViewActivity extends AppCompatActivity {
     }
 
     private void onClickAddTask() {
-        Intent intent = new Intent(this, AddTaskActivity.class);
+        Intent intent = new Intent(this, AddTaskDayActivity.class);
         intent.putExtra("date", date);
         startActivity(intent);
     }
 
     private void addDatabase() {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_tasks));
+        mDatabaseReference = mFireBaseDatabase.getReference().child(getString(R.string.dbnode_dates));
 
     }
 
