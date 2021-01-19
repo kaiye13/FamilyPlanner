@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,447 +8,88 @@
     android:background="@color/darkGray"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/gradient"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/FamilyPlanner"
+                android:textColor="@android:color/white"
+                android:textSize="40sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            tools:ignore="MissingConstraints">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/gradient"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                <TextView
-                    android:id="@+id/toolbarTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/FamilyPlanner"
-                    android:textColor="@android:color/white"
-                    android:textSize="40sp" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:weightSum="100"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="12.5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/timeTV0"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_00_00" />
-
-                <TextView
-                    android:id="@+id/timeTV1"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_01_00" />
-
-                <TextView
-                    android:id="@+id/timeTV2"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_02_00" />
-
-                <TextView
-                    android:id="@+id/timeTV3"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_03_00" />
-
-                <TextView
-                    android:id="@+id/timeTV4"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_04_00" />
-
-                <TextView
-                    android:id="@+id/timeTV5"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_05_00" />
-
-                <TextView
-                    android:id="@+id/timeTV6"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_06_00" />
-
-                <TextView
-                    android:id="@+id/timeTV7"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_07_00" />
-
-                <TextView
-                    android:id="@+id/timeTV8"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_08_00" />
-
-                <TextView
-                    android:id="@+id/timeTV9"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_09_00" />
-
-                <TextView
-                    android:id="@+id/timeTV10"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_10_00" />
-
-                <TextView
-                    android:id="@+id/timeTV11"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_11_00" />
-
-                <TextView
-                    android:id="@+id/timeTV12"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_12_00" />
-
-                <TextView
-                    android:id="@+id/timeTV13"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_13_00" />
-
-                <TextView
-                    android:id="@+id/timeTV14"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_14_00" />
-
-                <TextView
-                    android:id="@+id/timeTV15"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_15_00" />
-
-                <TextView
-                    android:id="@+id/timeTV16"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_16_00" />
-
-                <TextView
-                    android:id="@+id/timeTV17"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_17_00" />
-
-                <TextView
-                    android:id="@+id/timeTV18"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_18_00" />
-
-                <TextView
-                    android:id="@+id/timeTV19"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_19_00" />
-
-                <TextView
-                    android:id="@+id/timeTV20"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_20_00" />
-
-                <TextView
-                    android:id="@+id/timeTV21"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_21_00" />
-
-                <TextView
-                    android:id="@+id/timeTV22"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_22_00" />
-
-                <TextView
-                    android:id="@+id/timeTV23"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/_23_00" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="12.5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/mondayTV0000"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0030"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0100"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0130"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0200"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0230"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0300"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0330"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0400"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0430"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0500"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0530"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0600"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0630"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0700"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0730"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0800"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0830"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0900"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV0930"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1000"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1030"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1100"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1130"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1200"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1230"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1300"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1330"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1400"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1430"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1500"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1530"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1600"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1630"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1700"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1730"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1800"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1830"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1900"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV1930"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2000"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2030"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2100"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2130"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2200"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2230"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2300"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/mondayTV2330"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+            android:id="@+id/MondayTab"
+            android:text="@string/Mon" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TuesdayTab"
+            android:text="@string/Tue" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/WedsdayTab"
+            android:text="@string/Wed" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ThursdayTab"
+            android:text="@string/Thu" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FrydayTab"
+            android:text="@string/Fry" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SaturdayTab"
+            android:text="@string/Sat" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SundayTab"
+            android:text="@string/Sun" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TabLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
