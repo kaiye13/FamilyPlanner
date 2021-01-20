@@ -67,7 +67,7 @@
     <string name="dbnode_dates">dates</string>
     <string name="Mon">Mon</string>
     <string name="Tue">Tue</string>
-    <string name="Wed" />
+    <string name="Wed" >Wed</string>
     <string name="Thu">Thu</string>
     <string name="Fry">Fry</string>
     <string name="Sat">Sat</string>
@@ -78,4 +78,6 @@
     <string name="age">Age</string>
     <string name="birthDay">birthDay</string>
     <string name="Save">Save</string>
+    <string name="selectADaters">ds,nhqmklnhdmqlkdshf</string>
+    <string name="WeekView">WeekView</string>
 </resources>

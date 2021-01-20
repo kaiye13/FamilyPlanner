@@ -42,46 +42,9 @@
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/MondayTab"
-            android:text="@string/Mon" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TuesdayTab"
-            android:text="@string/Tue" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/WedsdayTab"
-            android:text="@string/Wed" />
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ThursdayTab"
-            android:text="@string/Thu" />
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/FrydayTab"
-            android:text="@string/Fry" />
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/SaturdayTab"
-            android:text="@string/Sat" />
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/SundayTab"
-            android:text="@string/Sun" />
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@color/cardview_light_background"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

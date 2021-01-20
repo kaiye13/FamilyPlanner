@@ -4,21 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+import the.family.planner.tabs.MainFragment;
 
 public class WeekViewActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
     private TextView title;
-    private TabItem mondayTab, tuesdayTab, wedsdayTab, thursdayTab, fridayTab, saturdayTab, sundayTab;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
@@ -59,20 +60,38 @@ public class WeekViewActivity extends AppCompatActivity {
 
     private void initializeItems() {
          tabLayout = findViewById(R.id.TabLayout);
-         mondayTab = findViewById(R.id.MondayTab);
-         tuesdayTab = findViewById(R.id.TuesdayTab);
-         wedsdayTab = findViewById(R.id.WedsdayTab);
-         thursdayTab = findViewById(R.id.ThursdayTab);
-         fridayTab = findViewById(R.id.FrydayTab);
-         saturdayTab = findViewById(R.id.SaturdayTab);
-         sundayTab = findViewById(R.id.SundayTab);
          viewPager = findViewById(R.id.viewPager);
+         title = findViewById(R.id.toolbarTitle);
+         title.setText(getResources().getString(R.string.WeekView));
 
-         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),
-                 tabLayout.getTabCount());
+         ArrayList<String> arrayList = new ArrayList<>();
 
-         viewPager.setAdapter(pagerAdapter);
+         arrayList.add(getResources().getString(R.string.Mon));
+        arrayList.add(getResources().getString(R.string.Thu));
+        arrayList.add(getResources().getString(R.string.Wed));
+        arrayList.add(getResources().getString(R.string.Thu));
+        arrayList.add(getResources().getString(R.string.Fry));
+        arrayList.add(getResources().getString(R.string.Sat));
+        arrayList.add(getResources().getString(R.string.Sun));
 
+
+        prepareViewPager(viewPager, arrayList);
+
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+
+        MainFragment fragment = new MainFragment();
+        for (int i = 0; i<arrayList.size();i++){
+            Bundle bundle = new Bundle();
+            bundle.putString("title",arrayList.get(i));
+            fragment.setArguments(bundle);
+            pagerAdapter.addFragment(fragment,arrayList.get(i));
+            fragment=new MainFragment();
+        }
+        viewPager.setAdapter(pagerAdapter);
     }
 
 

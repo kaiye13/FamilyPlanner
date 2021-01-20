@@ -1,54 +1,46 @@
 package the.family.planner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import the.family.planner.tabs.FridayFragment;
-import the.family.planner.tabs.MondayFragment;
-import the.family.planner.tabs.SaturdayFragment;
-import the.family.planner.tabs.SundayFragment;
-import the.family.planner.tabs.ThursdayFragment;
-import the.family.planner.tabs.TuesdayFragment;
-import the.family.planner.tabs.WedsdayFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 
-    private int numOfTabs;
+    ArrayList<String> arrayList = new ArrayList<>();
+    List<Fragment> fragmentList = new ArrayList<>();
 
-    public PagerAdapter(FragmentManager fm, int numOfTabs){
+    public void addFragment(Fragment fragment, String title){
+        arrayList.add(title);
+        fragmentList.add(fragment);
+    }
+
+    public PagerAdapter(FragmentManager fm){
         super(fm);
 
-        this.numOfTabs = numOfTabs;
 
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch(position) {
-            case 0:
-                return new MondayFragment();
-            case 1:
-                return new TuesdayFragment();
-            case 2:
-                return new WedsdayFragment();
-            case 3:
-                return new ThursdayFragment();
-            case 4:
-                return new FridayFragment();
-            case 5:
-                return new SaturdayFragment();
-            case 6:
-                return new SundayFragment();
-            default:
-                return null;
-        }
+        return fragmentList.get(position);
+
+
     }
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return fragmentList.size();
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return arrayList.get(position);
     }
 }
