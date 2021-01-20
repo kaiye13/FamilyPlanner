@@ -130,7 +130,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
 
                             User user = new User();
                             user.setName(fullName);
-                            user.setFamily_id("");
+                            user.setEmail(email);
                             user.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
                             FirebaseDatabase.getInstance().getReference()
                                     .child(getString(R.string.dbnode_users))

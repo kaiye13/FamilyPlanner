@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:background="@color/darkGray">
+
+<com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/gradient"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/FamilyPlanner"
+                android:textColor="@android:color/white"
+                android:textSize="40sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/NameLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:layout_marginTop="16dp"
+        android:text="@string/fullName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <TextView
+        android:id="@+id/NameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/NameLable"
+        app:layout_constraintTop_toBottomOf="@+id/NameLable" />
+
+    <TextView
+        android:id="@+id/EmailLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="16dp"
+        android:text="@string/email"
+        app:layout_constraintStart_toStartOf="@+id/NameTV"
+        app:layout_constraintTop_toBottomOf="@+id/NameTV" />
+
+    <TextView
+        android:id="@+id/EmailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:textStyle="bold"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/EmailLable"
+        app:layout_constraintTop_toBottomOf="@+id/EmailLable" />
+
+    <TextView
+        android:id="@+id/ageLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="16dp"
+        android:text="@string/age"
+        app:layout_constraintStart_toStartOf="@+id/EmailTV"
+        app:layout_constraintTop_toBottomOf="@+id/EmailTV" />
+
+    <TextView
+        android:id="@+id/ageTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:textStyle="bold"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/ageLable"
+        app:layout_constraintTop_toBottomOf="@+id/ageLable" />
+
+    <TextView
+        android:id="@+id/BirthdayLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:text="@string/birthDay"
+        app:layout_constraintStart_toStartOf="@+id/ageTV"
+        app:layout_constraintTop_toBottomOf="@+id/ageTV" />
+
+    <TextView
+        android:id="@+id/BirthdayTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/ageTV"
+        app:layout_constraintTop_toBottomOf="@+id/BirthdayLable" />
+
+    <TextView
+        android:id="@+id/familyLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+
+        android:text="@string/family"
+        app:layout_constraintStart_toStartOf="@+id/BirthdayLable"
+        app:layout_constraintTop_toBottomOf="@+id/BirthdayTV" />
+
+    <TextView
+        android:id="@+id/FamilyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="@+id/familyLable"
+        app:layout_constraintTop_toBottomOf="@+id/familyLable" />
+
+    <Button
+        android:id="@+id/EditBTN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/listboxgradient"
+        android:text="@string/Edit"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/FamilyTV"
+        app:layout_constraintTop_toBottomOf="@+id/FamilyTV" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

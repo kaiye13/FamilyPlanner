@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton monthImageButton, weekImageButton, dayImageButton, shoppingImageButton;
-    Button familyButton, logOutButton;
+    Button familyButton, logOutButton, profileButton;
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mDatabaseReference;
 
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         shoppingImageButton = findViewById(R.id.shoppingListImageButton);
         familyButton = findViewById(R.id.familyBTN);
         logOutButton = findViewById(R.id.familyBTN2);
+        profileButton = findViewById(R.id.profileBTN);
     }
 
     private void addDatabase() {
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
         monthImageButton.setOnClickListener(v-> onClickMonthBTN());
         shoppingImageButton.setOnClickListener(v-> onClickShopBTN());
         logOutButton.setOnClickListener(v-> onClickLogOutBTN());
+        profileButton.setOnClickListener(v-> onClickProfileBTN());
+
+    }
+
+    private void onClickProfileBTN() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     private void onClickMonthBTN() {
