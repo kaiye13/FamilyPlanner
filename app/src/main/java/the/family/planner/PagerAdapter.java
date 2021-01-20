@@ -32,19 +32,14 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return new MondayFragment();
             case 1:
                 return new TuesdayFragment();
-
             case 2:
                 return new WedsdayFragment();
-
             case 3:
                 return new ThursdayFragment();
-
             case 4:
                 return new FridayFragment();
-
             case 5:
                 return new SaturdayFragment();
-
             case 6:
                 return new SundayFragment();
             default:

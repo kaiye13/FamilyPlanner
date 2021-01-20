@@ -152,11 +152,7 @@ public class EditProfileActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-
-
         cDate = day + "/" + (month + 1) + "/" + year;
-
-
     }
 
 
