@@ -22,6 +22,8 @@ import com.google.firebase.database.Query;
 import java.util.Calendar;
 
 import the.family.planner.models.Task;
+import the.family.planner.task.AddTaskMonthActivity;
+import the.family.planner.task.ShowTask;
 
 public class MonthViewActivity extends AppCompatActivity {
 
@@ -111,7 +113,7 @@ public class MonthViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Task task = (Task) parent.getAdapter().getItem(position);
-                Intent intent = new Intent(MonthViewActivity.this,ShowTask.class);
+                Intent intent = new Intent(MonthViewActivity.this, ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
                 startActivity(intent);
             }

@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import the.family.planner.R;
+import the.family.planner.auth.EditProfileActivity;
 import the.family.planner.models.User;
 
 public class ProfileActivity extends AppCompatActivity {

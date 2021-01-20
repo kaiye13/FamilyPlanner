@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.SimpleTimeZone;
 
+import the.family.planner.R;
 import the.family.planner.models.User;
 
 public class EditProfileActivity extends AppCompatActivity {

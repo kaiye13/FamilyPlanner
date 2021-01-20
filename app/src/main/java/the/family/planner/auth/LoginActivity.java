@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import the.family.planner.MainActivity;
+import the.family.planner.R;
 
 public class LoginActivity extends AppCompatActivity {
 

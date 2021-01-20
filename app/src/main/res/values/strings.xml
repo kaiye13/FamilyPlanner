@@ -67,7 +67,7 @@
     <string name="dbnode_dates">dates</string>
     <string name="Mon">Mon</string>
     <string name="Tue">Tue</string>
-    <string name="Wed" >Wed</string>
+    <string name="Wed">Wed</string>
     <string name="Thu">Thu</string>
     <string name="Fry">Fry</string>
     <string name="Sat">Sat</string>
@@ -80,4 +80,13 @@
     <string name="Save">Save</string>
     <string name="selectADaters">ds,nhqmklnhdmqlkdshf</string>
     <string name="WeekView">WeekView</string>
+    <string name="familyName">Family Name</string>
+    <string name="familyId">Family ID</string>
+    <string name="familycode">Family Code</string>
+    <string name="JoinFamily">Wan\'t to join a Family by a family code?</string>
+    <string name="LeaveFamily">Want to leave your current family?</string>
+    <string name="cretaFamily">Isn\'t your family created yet?</string>
+    <string name="JoinFam">Join Family</string>
+    <string name="Leave">Leave Family</string>
+    <string name="CreateFam">Create Family</string>
 </resources>

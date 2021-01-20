@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowTask"
+    tools:context=".task.ShowTask"
     android:background="@color/darkGray">
 
     <com.google.android.material.appbar.AppBarLayout

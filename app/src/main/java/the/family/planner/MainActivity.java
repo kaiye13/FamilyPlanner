@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import the.family.planner.auth.LoginActivity;
+import the.family.planner.auth.ProfileActivity;
+import the.family.planner.family.FamilyActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
         shoppingImageButton.setOnClickListener(v-> onClickShopBTN());
         logOutButton.setOnClickListener(v-> onClickLogOutBTN());
         profileButton.setOnClickListener(v-> onClickProfileBTN());
+        familyButton.setOnClickListener(v->onClickFamilyBTN());
 
+    }
+
+    private void onClickFamilyBTN() {
+        Intent intent = new Intent(this, FamilyActivity.class);
+        startActivity(intent);
     }
 
     private void onClickProfileBTN() {

@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 import the.family.planner.tabs.MainFragment;
+import the.family.planner.tabs.PagerAdapter;
 
 public class WeekViewActivity extends AppCompatActivity {
 

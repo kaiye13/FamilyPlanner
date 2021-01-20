@@ -9,21 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditProfileActivity" android:parentActivityName=".ProfileActivity"></activity>
-        <activity android:name=".ProfileActivity" android:parentActivityName=".MainActivity" />
+        <activity android:name=".family.CreateFamilyActivity"></activity>
+        <activity android:name=".family.JoinFamilyActivity" />
         <activity
-            android:name=".EditTask"
-            android:parentActivityName=".ShowTask"
+            android:name=".family.FamilyActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".auth.EditProfileActivity"
+            android:parentActivityName=".auth.ProfileActivity" />
+        <activity
+            android:name=".auth.ProfileActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".task.EditTask"
+            android:parentActivityName=".task.ShowTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ShowTask"
+            android:name=".task.ShowTask"
             android:parentActivityName=".DayViewActivity" />
         <activity
-            android:name=".AddTaskDayActivity"
+            android:name=".task.AddTaskDayActivity"
             android:parentActivityName=".DayViewActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".AddTaskMonthActivity"
+            android:name=".task.AddTaskMonthActivity"
             android:parentActivityName=".MonthViewActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -40,9 +49,9 @@
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".RegisterUserActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".LoginActivity">
+            android:name=".auth.RegisterUserActivity"
+            android:parentActivityName=".auth.LoginActivity" />
+        <activity android:name=".auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,8 +59,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResetPasswordActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:name=".auth.ResetPasswordActivity"
+            android:parentActivityName=".auth.LoginActivity" />
     </application>
 
 </manifest>

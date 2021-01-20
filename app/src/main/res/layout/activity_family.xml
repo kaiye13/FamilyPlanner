@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.ProfileActivity"
+    tools:context=".family.FamilyActivity"
     android:background="@color/darkGray">
+
 
 <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -35,139 +36,119 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/NameLable"
+        android:id="@+id/FamilyNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
-
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="@string/fullName"
+        android:text="@string/familyName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <TextView
-        android:id="@+id/NameTV"
+        android:id="@+id/FamilyIdLabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/NameLable"
-        app:layout_constraintTop_toBottomOf="@+id/NameLable" />
+        android:text="@string/familycode"
+        app:layout_constraintStart_toStartOf="@+id/FamilyNameTV"
+        app:layout_constraintTop_toBottomOf="@+id/FamilyNameTV" />
 
     <TextView
-        android:id="@+id/EmailLable"
+        android:id="@+id/FamilyIdTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="16dp"
-        android:text="@string/email"
-        app:layout_constraintStart_toStartOf="@+id/NameTV"
-        app:layout_constraintTop_toBottomOf="@+id/NameTV" />
-
-    <TextView
-        android:id="@+id/EmailTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-
-        android:textStyle="bold"
-
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/EmailLable"
-        app:layout_constraintTop_toBottomOf="@+id/EmailLable" />
-
-    <TextView
-        android:id="@+id/ageLable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="16dp"
-        android:text="@string/age"
-        app:layout_constraintStart_toStartOf="@+id/EmailTV"
-        app:layout_constraintTop_toBottomOf="@+id/EmailTV" />
-
-    <TextView
-        android:id="@+id/ageTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-
-        android:textStyle="bold"
-
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/ageLable"
-        app:layout_constraintTop_toBottomOf="@+id/ageLable" />
-
-    <TextView
-        android:id="@+id/BirthdayLable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-
-        android:text="@string/birthDay"
-        app:layout_constraintStart_toStartOf="@+id/ageTV"
-        app:layout_constraintTop_toBottomOf="@+id/ageTV" />
-
-    <TextView
-        android:id="@+id/BirthdayTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/ageTV"
-        app:layout_constraintTop_toBottomOf="@+id/BirthdayLable" />
-
-    <TextView
-        android:id="@+id/familyLable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-
-        android:text="@string/family"
-        app:layout_constraintStart_toStartOf="@+id/BirthdayLable"
-        app:layout_constraintTop_toBottomOf="@+id/BirthdayTV" />
-
-    <TextView
-        android:id="@+id/FamilyTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-
-        app:layout_constraintStart_toStartOf="@+id/familyLable"
-        app:layout_constraintTop_toBottomOf="@+id/familyLable" />
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/FamilyIdLabel"
+        app:layout_constraintTop_toBottomOf="@+id/FamilyIdLabel" />
 
     <Button
-        android:id="@+id/EditBTN"
+        android:id="@+id/JoinFamilyBTN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/listboxgradient"
-        android:text="@string/Edit"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/FamilyTV"
-        app:layout_constraintTop_toBottomOf="@+id/FamilyTV" />
+        android:layout_marginTop="16dp"
 
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/listboxgradient"
+        android:text="@string/JoinFam"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/JoinFamilyLabel"
+        app:layout_constraintTop_toBottomOf="@+id/JoinFamilyLabel" />
+
+    <Button
+        android:id="@+id/LeaveFamilyBTN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/listboxgradient"
+        android:text="@string/Leave"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/JoinFamilyBTN"
+        app:layout_constraintStart_toStartOf="@+id/JoinFamilyBTN"
+        app:layout_constraintTop_toBottomOf="@+id/LeaveFamilyLabel" />
+
+    <TextView
+        android:id="@+id/JoinFamilyLabel"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/JoinFamily"
+        app:layout_constraintStart_toStartOf="@+id/FamilyIdTV"
+        app:layout_constraintTop_toBottomOf="@+id/FamilyIdTV" />
+
+    <TextView
+        android:id="@+id/LeaveFamilyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="32dp"
+        android:text="@string/LeaveFamily"
+        app:layout_constraintStart_toStartOf="@+id/JoinFamilyBTN"
+        app:layout_constraintTop_toBottomOf="@+id/JoinFamilyBTN" />
+
+    <TextView
+        android:id="@+id/CreateFamilyLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/cretaFamily"
+        app:layout_constraintStart_toStartOf="@+id/LeaveFamilyBTN"
+        app:layout_constraintTop_toBottomOf="@+id/LeaveFamilyBTN" />
+
+    <Button
+        android:id="@+id/CreateFamilyBTN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/listboxgradient"
+        android:text="@string/CreateFam"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/LeaveFamilyBTN"
+        app:layout_constraintStart_toStartOf="@+id/LeaveFamilyBTN"
+        app:layout_constraintTop_toBottomOf="@+id/CreateFamilyLable" />
+
+    <TextView
+        android:id="@+id/FamilyNameTV"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/FamilyNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/FamilyNameLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

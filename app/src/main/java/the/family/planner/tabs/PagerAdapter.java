@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.tabs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

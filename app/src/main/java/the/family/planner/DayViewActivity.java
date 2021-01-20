@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import the.family.planner.models.Task;
+import the.family.planner.task.AddTaskDayActivity;
+import the.family.planner.task.ShowTask;
 
 public class DayViewActivity extends AppCompatActivity {
 
@@ -121,7 +123,7 @@ public class DayViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Task task = (Task) parent.getAdapter().getItem(position);
-                Intent intent = new Intent(DayViewActivity.this,ShowTask.class);
+                Intent intent = new Intent(DayViewActivity.this, ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
                 intent.putExtra("date",task.getDate());
                 startActivity(intent);

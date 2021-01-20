@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.task;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import the.family.planner.DayViewActivity;
+import the.family.planner.R;
 import the.family.planner.models.Task;
 import the.family.planner.models.User;
 

@@ -1,4 +1,4 @@
-package the.family.planner;
+package the.family.planner.task;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import the.family.planner.DayViewActivity;
+import the.family.planner.R;
 import the.family.planner.models.Task;
 
 public class ShowTask extends AppCompatActivity {
