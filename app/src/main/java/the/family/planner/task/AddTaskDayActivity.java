@@ -45,8 +45,6 @@ public class AddTaskDayActivity extends AppCompatActivity  {
         addDatabase();
         initializeItems();
         setListeners();
-
-        String date = getIntent().getStringExtra("date");
     }
 
     private void initializeItems() {

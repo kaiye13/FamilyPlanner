@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".family.CreateFamilyActivity"></activity>
-        <activity android:name=".family.JoinFamilyActivity" />
+        <activity
+            android:name=".family.CreateFamilyActivity"
+            android:parentActivityName=".family.FamilyActivity" />
+        <activity android:name=".family.JoinFamilyActivity" android:parentActivityName=".family.FamilyActivity" />
         <activity
             android:name=".family.FamilyActivity"
             android:parentActivityName=".MainActivity" />

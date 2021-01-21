@@ -89,4 +89,6 @@
     <string name="JoinFam">Join Family</string>
     <string name="Leave">Leave Family</string>
     <string name="CreateFam">Create Family</string>
+    <string name="checkCode">Check Code</string>
+    <string name="members">Members</string>
 </resources>
