@@ -10,9 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Shopping.AddListActivity"
+            android:parentActivityName=".ShoppingActivity" />
+        <activity
             android:name=".family.CreateFamilyActivity"
             android:parentActivityName=".family.FamilyActivity" />
-        <activity android:name=".family.JoinFamilyActivity" android:parentActivityName=".family.FamilyActivity" />
+        <activity
+            android:name=".family.JoinFamilyActivity"
+            android:parentActivityName=".family.FamilyActivity" />
         <activity
             android:name=".family.FamilyActivity"
             android:parentActivityName=".MainActivity" />

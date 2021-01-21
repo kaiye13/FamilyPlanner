@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShoppingActivity"
+    tools:context=".Shopping.AddListActivity"
     android:background="@color/darkGray">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,35 +35,65 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <Button
-            android:id="@+id/addShoppingList"
+        <TextView
+            android:id="@+id/shopNameLB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/shopName"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <EditText
+            android:id="@+id/ShopNameET"
+            style="@style/EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/listboxgradient"
-            android:text="@string/addList"
-            android:textColor="@android:color/white" />
+            android:inputType="textPersonName"
+            android:text=""
+            android:textSize="20sp" />
 
-        <ListView
-            android:id="@+id/ShoppingList"
+        <TextView
+            android:id="@+id/productsLabel"
             android:layout_width="match_parent"
-            android:layout_height="579dp" />
+            android:layout_height="wrap_content"
+            android:text="@string/Needed"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp" />
 
+        <EditText
+            android:id="@+id/ProductsET"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:text=""
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/AddShopplinglistBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:background="@drawable/listboxgradient"
+            android:text="@string/addList" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

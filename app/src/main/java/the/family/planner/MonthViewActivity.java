@@ -75,23 +75,19 @@ public class MonthViewActivity extends AppCompatActivity {
                 .setLifecycleOwner(MonthViewActivity.this)
                 .setQuery(query,Task.class)
                 .build();
-        adapter = new FirebaseListAdapter(options) {
+        adapter = new FirebaseListAdapter<Task>(options) {
             @Override
-            protected void populateView(@NonNull View v, @NonNull Object model, int position) {
+            protected void populateView(@NonNull View v, @NonNull Task task, int position) {
                 TextView startTime = v.findViewById(R.id.startTimeLabel);
                 TextView endTime = v.findViewById(R.id.endTimeLabel);
                 TextView title = v.findViewById(R.id.titleLabel);
 
-                Task task = (Task) model;
-                //set views
                 startTime.setText(task.getStart_time());
                 endTime.setText(task.getEnd_time());
                 title.setText(task.getTitle());
 
             }
         };
-
-        taskListView.setAdapter(adapter);
 
         taskListView.setAdapter(adapter);
 
@@ -115,6 +111,7 @@ public class MonthViewActivity extends AppCompatActivity {
                 Task task = (Task) parent.getAdapter().getItem(position);
                 Intent intent = new Intent(MonthViewActivity.this, ShowTask.class);
                 intent.putExtra("task_id", task.getTask_id());
+                intent.putExtra("date",task.getDate());
                 startActivity(intent);
             }
         });

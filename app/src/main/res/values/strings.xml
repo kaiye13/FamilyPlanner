@@ -91,4 +91,7 @@
     <string name="CreateFam">Create Family</string>
     <string name="checkCode">Check Code</string>
     <string name="members">Members</string>
+    <string name="addList">Add ShoppingList</string>
+    <string name="shopName">shopName</string>
+    <string name="Needed">Needed Items</string>
 </resources>

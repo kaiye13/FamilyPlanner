@@ -134,7 +134,7 @@ public class DayViewActivity extends AppCompatActivity {
     private void onClickDay() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(DayViewActivity.this, (view, year, month, dayOfMonth) -> {
             month = month + 1;
-            date = dayOfMonth + "-" + month + "-" + year;
+            date = dayOfMonth + "-" + (month+1) + "-" + year;
             dayEditText.setText(date);
             setList();
         }, year, month, day);
